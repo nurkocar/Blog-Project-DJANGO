@@ -30,7 +30,7 @@ def post_create(request):
 
 
 def post_detail(request, slug):
-    print(request.get_host())
+    # print(request.get_host())
     # print(slug)
     # Post.objects.get(slug=learn-drf-3c78be2186)
     # slug = learn-drf-3c78be2186
@@ -89,7 +89,7 @@ def like(request, slug):
         obj = get_object_or_404(Post, slug=slug)
         like_qs = Like.objects.filter(user=request.user, post=obj)
         if like_qs:
-            like_qs[0].delete()
+            like_qs.delete()
         else:
             Like.objects.create(user=request.user, post=obj)
         return redirect('blog:detail', slug=slug)
